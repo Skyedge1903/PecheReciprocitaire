@@ -52,5 +52,5 @@ N'hésitez pas à contribuer ou à signaler des problèmes via les issues. Tout 
 Si vous souhaitez réaliser une carte dans ce style ou contribuer à celle-ci, n'hésitez pas à me contacter:
 
 - 🌐 [Webanimus](https://webanimus.com)
-- 📧 [Envoyer un e-mail](mailto:your@email.com)
-- ☕ [Soutenir via PayPal](https://www.paypal.me/yourpaypal)
+- 📧 [Envoyer un e-mail](mailto:clement.girard@webanimus.com)
+- ☕ [Soutenir via PayPal](https://paypal.me/webanimus)
