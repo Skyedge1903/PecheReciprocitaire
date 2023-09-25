@@ -185,8 +185,8 @@ header_html = """
 
 <div class="header-bar" style="background-color: #f5f5f5; padding: 8px 0px; border-bottom: 1px solid #e0e0e0; font-family: Arial; text-align: center; display: flex; justify-content: center; align-items: center;">
     <span style="flex: 1; text-align: left; margin-left: 10px;">
-        Vous souhaitez réaliser une carte dans ce style ou contribuer à celle-ci?&nbsp; <!-- Espace insécable ajouté ici -->
-        <span class="info-tooltip" onclick="window.location='https://webanimus.com'">
+        Vous souhaitez réaliser une carte dans ce style ou contribuer?
+        <span class="info-tooltip">
             ℹ️ 
             <div class="info-tooltip-content">
                 Cette carte présente les lieux de pêche réciprocitaires.<br>
