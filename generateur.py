@@ -53,7 +53,7 @@ adjacent_regions = regions[regions['geometry'].apply(is_adjacent)]
 
 # Setup base map
 oise_centroid = shape(oise_polygon).centroid.coords[0]
-m = folium.Map(location=[oise_centroid[1], oise_centroid[0]], zoom_start=9, control_scale=False)
+m = folium.Map(location=[oise_centroid[1], oise_centroid[0]], zoom_start=10, control_scale=False)
 
 # Add Esri Satellite tile
 folium.TileLayer(
@@ -89,7 +89,7 @@ for river in rivers:
         name = river['properties']['NomEntiteH']
         folium.GeoJson(
             river['geometry'],
-            style_function=lambda x: {'color': 'darkblue', 'fillOpacity': 1, 'weight': 2},
+            style_function=lambda x: {'color': 'darkblue', 'fillOpacity': 1, 'weight': 4},
             tooltip=name
         ).add_to(m)
 
@@ -182,10 +182,6 @@ header_html = """
         display: block;
     }
 </style>
-
-<div class="ad-bar" style="background-color: #eeeeee; padding: 8px 0px; border-bottom: 1px solid #e0e0e0; font-family: Arial; text-align: center; display: flex; justify-content: center; align-items: center;">
-    Publicité - [Votre contenu publicitaire ici]
-</div>
 
 <div class="header-bar" style="background-color: #f5f5f5; padding: 8px 0px; border-bottom: 1px solid #e0e0e0; font-family: Arial; text-align: center; display: flex; justify-content: center; align-items: center;">
     <span style="flex: 1; text-align: left; margin-left: 10px;">
