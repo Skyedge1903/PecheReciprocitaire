@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet Draw Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css"/>
+    <style>
+        #map {
+            width: 100%;
+            height: 80vh; /* 80% de la hauteur de la fenêtre pour laisser de l'espace pour le formulaire */
+        }
+    </style>
+</head>
+<body>
+
+<div style="padding: 10px; background-color: #f4f4f4; border-bottom: 1px solid #ddd;">
+    <label for="latitude">Latitude: </label>
+    <input type="text" id="latitude" placeholder="Enter latitude">
+
+    <label for="longitude">Longitude: </label>
+    <input type="text" id="longitude" placeholder="Enter longitude">
+
+    <button onclick="moveToLocation()">Go</button>
+</div>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+<script>
+    var map = L.map('map').setView([48.8566, 2.3522], 14);  // Coordonnées de Paris par défaut
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    var drawnItems = new L.FeatureGroup();
+    map.addLayer(drawnItems);
+
+    var drawControl = new L.Control.Draw({
+        draw: {
+            polyline: false,
+            circle: false,
+            marker: false,
+            circlemarker: false,
+            rectangle: false
+        },
+        edit: {
+            featureGroup: drawnItems
+        }
+    });
+    map.addControl(drawControl);
+
+    map.on('draw:created', function (e) {
+        var type = e.layerType,
+            layer = e.layer;
+
+        drawnItems.addLayer(layer);
+
+        var data = layer.toGeoJSON();
+        fetch('/save', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+    });
+
+    function moveToLocation() {
+        const lat = parseFloat(document.getElementById('latitude').value);
+        const lng = parseFloat(document.getElementById('longitude').value);
+
+        if (!isNaN(lat) && !isNaN(lng)) {
+            map.setView(new L.LatLng(lat, lng), 14);
+        } else {
+            alert("Please enter valid coordinates.");
+        }
+    }
+
+</script>
+
+</body>
+</html>
