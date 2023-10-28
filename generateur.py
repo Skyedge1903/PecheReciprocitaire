@@ -54,7 +54,8 @@ adjacent_regions = regions[regions['geometry'].apply(is_adjacent)]
 # Setup base map
 oise_centroid = shape(oise_polygon).centroid.coords[0]
 m = folium.Map(location=[oise_centroid[1], oise_centroid[0]], zoom_start=10, control_scale=False)
-
+# titre de la page "La pêche réciprocitaire dans l'Oise"
+m.get_root().html.add_child(folium.Element("<title>La pêche réciprocitaire dans l'Oise</title>"))
 # Add Esri Satellite tile
 folium.TileLayer(
     "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
